@@ -1,67 +1,64 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone } from 'lucide-react';
 import Logo from '../common/Logo.jsx';
 import { FONCTIONNALITES, NAVIGATION } from '../../content/site.js';
 import { config } from '../../utils/config.js';
 
+const LEGAL = [
+  { to: '/mentions-legales', label: 'Mentions légales' },
+  { to: '/confidentialite', label: 'Confidentialité' },
+  { to: '/conditions-utilisation', label: 'Conditions d’utilisation' },
+];
+
+function Colonne({ titre, children }) {
+  return (
+    <div>
+      <h2 className="mono text-legende text-texte-discret">{titre}</h2>
+      <ul className="mt-4 space-y-3 text-petit">{children}</ul>
+    </div>
+  );
+}
+
+const lien = 'lien-souligne text-texte-secondaire hover:text-[var(--site-encre)]';
+
 /** Pied de page. Les coordonnées ne s'affichent que si elles sont configurées (.env). */
 export default function SiteFooter() {
-  const contact = config.contactEmail || config.contactPhone;
   return (
-    <footer className="bande-sombre">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
-        <div className="space-y-4">
-          <Logo sombre />
-          <p className="max-w-xs text-petit text-[var(--site-bande-texte-2)]">
-            La plateforme B2B qui réunit acheteurs et fournisseurs, du bon de commande jusqu’au paiement.
+    <footer className="fond-papier border-t border-[var(--site-filet)]">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-6 lg:grid-cols-[1.3fr_2fr] lg:px-8">
+        <div className="max-w-sm">
+          <Logo />
+          <p className="mt-5 text-petit leading-relaxed text-texte-secondaire">
+            Fournisseurs, bons de commande, livraisons, factures et paiements entre entreprises, au même endroit.
           </p>
+          <p className="mono mt-5 text-legende text-texte-discret">Web · Android · iOS</p>
         </div>
 
-        <nav aria-label="Navigation du pied de page">
-          <h2 className="text-legende font-bold uppercase tracking-[0.14em] text-[var(--site-accent-clair)]">Navigation</h2>
-          <ul className="mt-4 space-y-2.5 text-petit">
-            {NAVIGATION.map((n) => (
-              <li key={n.to}><Link to={n.to} className="text-[var(--site-bande-texte-2)] hover:text-white">{n.label}</Link></li>
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
+          <Colonne titre="Pro2Link">
+            {NAVIGATION.map((n) => <li key={n.to}><Link to={n.to} className={lien}>{n.label}</Link></li>)}
+          </Colonne>
+          <Colonne titre="Fonctionnalités">
+            {FONCTIONNALITES.slice(0, 5).map((f) => (
+              <li key={f.id}><Link to={`/fonctionnalites#${f.id}`} className={lien}>{f.titre}</Link></li>
             ))}
-            <li><Link to="/connexion" className="text-[var(--site-bande-texte-2)] hover:text-white">Se connecter</Link></li>
-          </ul>
-        </nav>
-
-        <div>
-          <h2 className="text-legende font-bold uppercase tracking-[0.14em] text-[var(--site-accent-clair)]">Fonctionnalités</h2>
-          <ul className="mt-4 space-y-2.5 text-petit">
-            {FONCTIONNALITES.slice(0, 6).map((f) => (
-              <li key={f.id}><Link to={`/fonctionnalites#${f.id}`} className="text-[var(--site-bande-texte-2)] hover:text-white">{f.titre}</Link></li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          {contact ? (
-            <>
-              <h2 className="text-legende font-bold uppercase tracking-[0.14em] text-[var(--site-accent-clair)]">Contact</h2>
-              <ul className="mt-4 space-y-2.5 text-petit">
-                {config.contactEmail ? (
-                  <li><a href={`mailto:${config.contactEmail}`} className="inline-flex items-center gap-2 text-[var(--site-bande-texte-2)] hover:text-white"><Mail className="size-4" aria-hidden />{config.contactEmail}</a></li>
-                ) : null}
-                {config.contactPhone ? (
-                  <li><a href={`tel:${config.contactPhone.replace(/\s/g, '')}`} className="inline-flex items-center gap-2 text-[var(--site-bande-texte-2)] hover:text-white"><Phone className="size-4" aria-hidden />{config.contactPhone}</a></li>
-                ) : null}
-              </ul>
-            </>
-          ) : null}
-          <h2 className={`text-legende font-bold uppercase tracking-[0.14em] text-[var(--site-accent-clair)] ${contact ? 'mt-8' : ''}`}>Informations légales</h2>
-          <ul className="mt-4 space-y-2.5 text-petit">
-            <li><Link to="/mentions-legales" className="text-[var(--site-bande-texte-2)] hover:text-white">Mentions légales</Link></li>
-            <li><Link to="/confidentialite" className="text-[var(--site-bande-texte-2)] hover:text-white">Politique de confidentialité</Link></li>
-            <li><Link to="/conditions-utilisation" className="text-[var(--site-bande-texte-2)] hover:text-white">Conditions d’utilisation</Link></li>
-          </ul>
+          </Colonne>
+          <Colonne titre="Votre espace">
+            <li><Link to="/inscription" className={lien}>Créer un compte</Link></li>
+            <li><Link to="/connexion" className={lien}>Se connecter</Link></li>
+            <li><Link to="/mot-de-passe-oublie" className={lien}>Mot de passe oublié</Link></li>
+            {config.contactEmail ? <li><a href={`mailto:${config.contactEmail}`} className={lien}>{config.contactEmail}</a></li> : null}
+            {config.contactPhone ? <li><a href={`tel:${config.contactPhone.replace(/\s/g, '')}`} className={lien}>{config.contactPhone}</a></li> : null}
+          </Colonne>
         </div>
       </div>
-      <div className="border-t border-white/10">
-        <p className="mx-auto max-w-7xl px-4 py-6 text-legende text-[var(--site-bande-texte-2)] sm:px-6 lg:px-8">
-          © {new Date().getFullYear()} Pro2Link. Tous droits réservés.
-        </p>
+
+      <div className="border-t border-[var(--site-filet)]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-legende text-texte-secondaire sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+          <p>© {new Date().getFullYear()} Pro2Link</p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            {LEGAL.map((l) => <li key={l.to}><Link to={l.to} className={lien}>{l.label}</Link></li>)}
+          </ul>
+        </div>
       </div>
     </footer>
   );

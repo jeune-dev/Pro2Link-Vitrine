@@ -86,9 +86,6 @@ dialog.pl-modale::backdrop { background: rgb(14 22 33 / 0.55); backdrop-filter: 
 dialog.pl-modale[open] { animation: modale-entree 0.18s ease-out; }
 @keyframes modale-entree { from { opacity: 0; transform: translateY(8px) scale(0.98); } }
 
-/* Apparition discrète des sections de la vitrine. */
-.apparition { animation: apparition 0.6s ease-out both; }
-@keyframes apparition { from { opacity: 0; transform: translateY(12px); } }
 
 /* Squelettes de chargement. */
 .squelette {
@@ -97,50 +94,102 @@ dialog.pl-modale[open] { animation: modale-entree 0.18s ease-out; }
 }
 @keyframes squelette { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
 
-/* Fond quadrillé discret du hero. */
-.fond-grille {
-  background-image:
-    linear-gradient(var(--pl-bordure) 1px, transparent 1px),
-    linear-gradient(90deg, var(--pl-bordure) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse at 60% 30%, #000 20%, transparent 70%);
-}
 
 .chiffres { font-variant-numeric: tabular-nums; }
 
-/* ── Style du site vitrine ───────────────────────────────────────────────
-   Bandes sombres en bleu de marque (pas de marine), accents turquoise.
-   Valeurs dérivées de la charte ; le mode sombre a ses propres pas. */
+/* ══════════════════════════════════════════════════════════════════════
+   Direction artistique du site vitrine — « le registre commercial »
+   Pro2Link est l'outil du bon de commande validé à deux : le site emprunte
+   au document commercial ses filets fins, ses références à chasse fixe et
+   sa sobriété. Bleu de marque dominant, turquoise réservé aux détails.
+   ══════════════════════════════════════════════════════════════════════ */
 :root {
-  --site-bande: #0B3A63;          /* = primaire survol de la charte */
-  --site-bande-2: #0F4C81;        /* = primaire */
-  --site-bande-texte: #FFFFFF;
-  --site-bande-texte-2: rgb(255 255 255 / 0.78);
-  --site-accent: #0D9488;         /* turquoise foncé : mots mis en avant (titres ≥ 24 px) */
-  --site-accent-clair: #2DD4BF;   /* turquoise sur fond sombre */
-  --site-halo: rgb(20 184 166 / 0.18);
+  --site-encre: #13293D;              /* titres : bleu-noir chaud, dérivé du primaire */
+  --site-papier: #FBFBF9;             /* fond « papier » des sections alternées */
+  --site-filet: #E4E7EC;              /* filets de registre */
+  --site-bande: #0F4C81;              /* bande pleine = primaire de la charte */
+  --site-bande-texte-2: rgb(255 255 255 / 0.76);
+  --site-detail: #0D9488;             /* turquoise foncé (détails, jamais un état) */
+  --site-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Mono', Menlo, Consolas, monospace;
+  --site-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --site-bande: #0F2A44; --site-bande-2: #123553; --site-accent: #2DD4BF; --site-halo: rgb(45 212 191 / 0.12); }
+  :root:not([data-theme="light"]) {
+    --site-encre: #E6EAF0; --site-papier: #121B27; --site-filet: #2A3747;
+    --site-bande: #123553; --site-detail: #2DD4BF;
+  }
 }
-:root[data-theme="dark"] { --site-bande: #0F2A44; --site-bande-2: #123553; --site-accent: #2DD4BF; --site-halo: rgb(45 212 191 / 0.12); }
-
-/* Sur-titre de section : majuscules espacées, encadrées de traits. */
-.surtitre {
-  display: inline-flex; align-items: center; gap: 12px;
-  font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--site-accent);
+:root[data-theme="dark"] {
+  --site-encre: #E6EAF0; --site-papier: #121B27; --site-filet: #2A3747;
+  --site-bande: #123553; --site-detail: #2DD4BF;
 }
-.surtitre::before, .surtitre--centre::after { content: ""; width: 24px; height: 2px; border-radius: 2px; background: currentColor; }
-.surtitre--sombre { color: var(--site-accent-clair); }
 
-/* Titres d'affichage : très gras, interlettrage serré. */
-.titre-affiche { font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-
-/* Bandes sombres de la vitrine. */
-.bande-sombre {
-  background:
-    radial-gradient(900px 420px at 85% 0%, rgb(20 184 166 / 0.16), transparent 60%),
-    linear-gradient(160deg, var(--site-bande) 0%, var(--site-bande-2) 100%);
-  color: var(--site-bande-texte);
+/* Titres d'affichage : resserrés, graisse 650, retours à la ligne équilibrés. */
+.titre-affiche {
+  color: var(--site-encre);
+  font-weight: 650; letter-spacing: -0.032em; line-height: 1.06;
+  text-wrap: balance;
 }
+.texte-equilibre { text-wrap: pretty; }
+
+/* Repère de section : numéro + libellé, à chasse fixe (comme une référence de document). */
+.repere {
+  display: inline-flex; align-items: baseline; gap: 10px;
+  font-family: var(--site-mono); font-size: 12.5px; letter-spacing: 0.04em;
+  color: var(--pl-texte-secondaire);
+}
+.repere b { color: var(--site-detail); font-weight: 600; }
+.mono { font-family: var(--site-mono); }
+
+.fond-papier { background: var(--site-papier); }
+.bande-pleine { background: var(--site-bande); color: #FFFFFF; }
+.filet { border-color: var(--site-filet); }
+
+/* Liens soulignés au survol, sans saut de mise en page. */
+.lien-souligne {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.25s var(--site-ease);
+}
+.lien-souligne:hover, .lien-souligne:focus-visible { background-size: 100% 1px; }
+
+/* Flèche qui avance légèrement au survol d'un bouton ou d'un lien. */
+.fleche { transition: transform 0.2s var(--site-ease); }
+a:hover > .fleche, button:hover > .fleche, a:focus-visible > .fleche { transform: translateX(3px); }
+
+/* ── Révélation au défilement ───────────────────────────────────────────
+   Le contenu n'est masqué QUE si le script de index.html a posé la classe
+   « anim » (IntersectionObserver disponible, mouvement autorisé). Sans JS ou
+   avec prefers-reduced-motion, tout reste visible. */
+html.anim [data-revele] {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.6s var(--site-ease), transform 0.6s var(--site-ease);
+  transition-delay: calc(var(--rang, 0) * 70ms);
+}
+html.anim [data-revele].est-visible { opacity: 1; transform: none; }
+
+/* Entrée du hero (une seule fois, au chargement). */
+.entree { animation: entree 0.7s var(--site-ease) both; animation-delay: var(--delai, 0ms); }
+@keyframes entree { from { opacity: 0; transform: translateY(10px); } }
+
+/* Bon de commande du hero : la proposition du fournisseur apparaît après coup. */
+.bc-avant { position: relative; }
+.bc-avant::after {
+  content: ""; position: absolute; left: -2px; right: -2px; top: 52%; height: 1.5px;
+  background: var(--pl-danger); transform-origin: left; transform: scaleX(0);
+  animation: rayure 0.45s var(--site-ease) 1.2s forwards;
+}
+@keyframes rayure { to { transform: scaleX(1); } }
+.bc-apres { opacity: 0; animation: entree 0.5s var(--site-ease) 1.55s forwards; }
+.bc-etape-active { animation: pulse-etape 0.6s var(--site-ease) 2s both; }
+@keyframes pulse-etape { from { background: var(--pl-surface-alt); color: var(--pl-texte-secondaire); } }
+
+/* Panneaux repliables (FAQ, menu mobile) : hauteur animée sans JS de mesure. */
+.repliable { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s var(--site-ease); }
+.repliable[data-ouvert="true"] { grid-template-rows: 1fr; }
+.repliable > * { overflow: hidden; min-height: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .entree, .bc-apres, .bc-etape-active { animation: none; opacity: 1; }
+  .bc-avant::after { animation: none; transform: scaleX(1); }
+}
+

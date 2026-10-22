@@ -45,14 +45,16 @@ export const FONCTIONNALITES = [
 ];
 
 /**
- * Repères produit affichés sous le hero : FAITS issus du cahier des charges
- * (supports, rôles, statuts), pas des chiffres commerciaux.
+ * Ce que chaque entreprise doit pouvoir savoir simplement (cahier des charges
+ * § 29, « Résultat attendu ») et l'endroit où Pro2Link le lui montre.
  */
-export const REPERES = [
-  { valeur: '3', libelle: 'supports : Web, Android et iOS' },
-  { valeur: '6', libelle: 'rôles internes par entreprise' },
-  { valeur: '11', libelle: 'étapes de commande suivies' },
-  { valeur: '0', libelle: 'panier : un bon de commande validé à deux' },
+export const SIX_QUESTIONS = [
+  { question: 'Ce que j’ai commandé', reponse: 'Bons de commande et leur historique' },
+  { question: 'Ce qui est en cours', reponse: 'Statut de chaque commande, mis à jour par le fournisseur' },
+  { question: 'Ce que j’ai reçu', reponse: 'Réceptions confirmées, livraison par livraison' },
+  { question: 'Ce que je dois', reponse: 'Solde par fournisseur, calculé à partir des factures' },
+  { question: 'Ce que j’ai payé', reponse: 'Paiements enregistrés et leur historique' },
+  { question: 'Avec qui je travaille', reponse: 'Fournisseurs et clients, avec leur situation' },
 ];
 
 /** Section sombre « Web et mobile » (cahier des charges § 4 et § 23). */

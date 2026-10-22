@@ -1,14 +1,14 @@
 /**
  * Identité textuelle PROVISOIRE de Pro2Link (aucun logo officiel fourni) :
- * deux anneaux liés (acheteur / fournisseur) + nom. À remplacer par le logo
- * définitif dans src/assets lorsqu'il sera disponible.
+ * deux maillons qui se croisent (acheteur / fournisseur) + nom. À remplacer
+ * par le logo définitif dans src/assets lorsqu'il sera disponible.
  */
 export function LogoMark({ className = 'size-8' }) {
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden focusable="false">
-      <rect width="32" height="32" rx="8" fill="var(--pl-primaire)" />
-      <circle cx="12.5" cy="16" r="5.2" fill="none" stroke="var(--pl-sur-primaire)" strokeWidth="2.4" />
-      <circle cx="19.5" cy="16" r="5.2" fill="none" stroke="#14B8A6" strokeWidth="2.4" />
+      <rect width="32" height="32" rx="7" fill="var(--pl-primaire)" />
+      <rect x="6.5" y="11" width="11.5" height="10" rx="5" fill="none" stroke="var(--pl-sur-primaire)" strokeWidth="2.2" />
+      <rect x="14" y="11" width="11.5" height="10" rx="5" fill="none" stroke="#2DD4BF" strokeWidth="2.2" />
     </svg>
   );
 }
@@ -18,8 +18,8 @@ export default function Logo({ compact = false, sombre = false, className = '' }
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <LogoMark />
       {compact ? <span className="sr-only">Pro2Link</span> : (
-        <span className={`text-[19px] font-bold tracking-tight ${sombre ? 'text-white' : 'text-texte'}`}>
-          Pro<span className={sombre ? 'text-[var(--site-accent-clair)]' : 'text-secondaire-survol'}>2</span>Link
+        <span className={`text-[18px] font-[650] tracking-[-0.02em] ${sombre ? 'text-white' : 'text-[var(--site-encre)]'}`}>
+          Pro<span className={sombre ? 'text-[#2DD4BF]' : 'text-[var(--site-detail)]'}>2</span>Link
         </span>
       )}
     </span>

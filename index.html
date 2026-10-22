@@ -15,13 +15,18 @@
     <meta name="twitter:card" content="summary" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet" />
     <script>
       // Thème choisi par l'utilisateur (préférence locale), appliqué avant le rendu.
       try {
         var t = localStorage.getItem('pl-theme');
         if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
       } catch (e) {}
+      // Révélation au défilement : activée seulement si elle peut fonctionner
+      // et si l'utilisateur n'a pas demandé à réduire les animations.
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('anim');
+      }
     </script>
   </head>
   <body>
