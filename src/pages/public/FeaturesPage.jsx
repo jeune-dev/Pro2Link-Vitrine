@@ -18,7 +18,9 @@ export default function FeaturesPage() {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <SectionHeading
             surtitre="Fonctionnalités"
-            titre="Les outils d’une relation commerciale bien tenue."
+            titre="Les outils d’une relation commerciale"
+            accent="bien tenue."
+            taille="lg"
             intro="Chaque fonctionnalité de Pro2Link répond à une étape concrète des échanges entre acheteurs et fournisseurs."
           />
           <nav aria-label="Sommaire des fonctionnalités" className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-2">
@@ -61,10 +63,10 @@ export default function FeaturesPage() {
       </div>
 
       <CtaBand titre="Prêt à centraliser vos échanges commerciaux ?" texte="Découvrez comment une commande circule entre acheteur et fournisseur.">
-        <Link to="/comment-ca-marche" className={classesBouton({ variante: 'secondaire', taille: 'lg' })}>
+        <Link to="/comment-ca-marche" className={classesBouton({ variante: 'clair', taille: 'lg' })}>
           Voir comment ça marche <ArrowRight className="size-4" aria-hidden />
         </Link>
-        <Link to="/inscription" className={classesBouton({ variante: 'contour', taille: 'lg', className: '!border-sur-primaire/40 !text-sur-primaire hover:!bg-white/10' })}>
+        <Link to="/inscription" className={classesBouton({ variante: 'contour-clair', taille: 'lg' })}>
           Commencer
         </Link>
       </CtaBand>

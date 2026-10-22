@@ -13,13 +13,13 @@ export function LogoMark({ className = 'size-8' }) {
   );
 }
 
-export default function Logo({ compact = false, className = '' }) {
+export default function Logo({ compact = false, sombre = false, className = '' }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <LogoMark />
       {compact ? <span className="sr-only">Pro2Link</span> : (
-        <span className="text-[19px] font-semibold tracking-tight text-texte">
-          Pro<span className="text-secondaire-survol">2</span>Link
+        <span className={`text-[19px] font-bold tracking-tight ${sombre ? 'text-white' : 'text-texte'}`}>
+          Pro<span className={sombre ? 'text-[var(--site-accent-clair)]' : 'text-secondaire-survol'}>2</span>Link
         </span>
       )}
     </span>

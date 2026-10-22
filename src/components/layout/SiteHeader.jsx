@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
 import Logo from '../common/Logo.jsx';
 import { classesBouton } from '../common/Button.jsx';
 import { NAVIGATION } from '../../content/site.js';
@@ -51,14 +51,16 @@ export default function SiteHeader() {
           <Logo />
         </Link>
 
-        <nav aria-label="Navigation principale" className="hidden flex-1 justify-center lg:flex">
-          <ul className="flex items-center gap-1">
+        <nav aria-label="Navigation principale" className="ml-auto hidden lg:flex">
+          <ul className="flex items-center gap-7">
             {NAVIGATION.map((item) => (
               <li key={item.to}>
                 <NavLink
                   to={item.to}
-                  className={() => `rounded-champ px-3 py-2 text-petit font-medium transition-colors ${
-                    estActif(item.to) ? 'text-primaire' : 'text-texte-secondaire hover:text-texte'
+                  className={() => `relative py-2 text-petit font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:rounded-full after:transition-transform ${
+                    estActif(item.to)
+                      ? 'text-texte after:scale-x-100 after:bg-[var(--site-accent)]'
+                      : 'text-texte-secondaire after:scale-x-0 after:bg-[var(--site-accent)] hover:text-texte hover:after:scale-x-100'
                   }`}
                   aria-current={estActif(item.to) ? 'page' : undefined}
                 >
@@ -69,14 +71,17 @@ export default function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="ml-auto hidden items-center gap-2 lg:flex">
-          <Link to="/connexion" className={classesBouton({ variante: 'fantome' })}>Se connecter</Link>
-          <Link to="/inscription" className={classesBouton({ variante: 'primaire' })}>Commencer</Link>
+        <div className="hidden items-center gap-5 lg:flex">
+          <span aria-hidden className="h-5 w-px bg-bordure" />
+          <Link to="/connexion" className="text-petit font-semibold text-texte hover:text-primaire">Se connecter</Link>
+          <Link to="/inscription" className={classesBouton({ variante: 'primaire' })}>
+            Commencer <ArrowRight className="size-4" aria-hidden />
+          </Link>
         </div>
 
         <button
           type="button"
-          className="ml-auto rounded-champ p-2 text-texte lg:hidden"
+          className="ml-auto rounded-full p-2 text-texte lg:hidden"
           aria-expanded={menu}
           aria-controls="menu-mobile"
           aria-label={menu ? 'Fermer le menu' : 'Ouvrir le menu'}

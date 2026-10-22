@@ -44,7 +44,9 @@ export default function HowItWorksPage() {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <SectionHeading
             surtitre="Comment ça marche"
-            titre="Du bon de commande au paiement, chacun son rôle."
+            titre="Du bon de commande au paiement,"
+            accent="chacun son rôle."
+            taille="lg"
             intro="Pro2Link repose sur un processus de bon de commande et de validation entre acheteur et fournisseur — pas sur un panier de marketplace."
           />
         </div>
@@ -59,7 +61,8 @@ export default function HowItWorksPage() {
         <SectionHeading
           id="titre-statuts"
           surtitre="Statuts d’une commande"
-          titre="Une même référence pour les deux parties."
+          titre="Une même référence"
+          accent="pour les deux parties."
           intro="Le fournisseur met à jour les statuts opérationnels ; l’acheteur confirme la réception. Chaque changement est historisé."
         />
         <ol className="mx-auto mt-12 flex max-w-5xl flex-wrap justify-center gap-2">
@@ -73,10 +76,10 @@ export default function HowItWorksPage() {
       </Section>
 
       <CtaBand titre="Simplifiez dès aujourd’hui la gestion de vos échanges commerciaux.">
-        <Link to="/inscription" className={classesBouton({ variante: 'secondaire', taille: 'lg' })}>
+        <Link to="/inscription" className={classesBouton({ variante: 'clair', taille: 'lg' })}>
           Commencer <ArrowRight className="size-4" aria-hidden />
         </Link>
-        <Link to="/connexion" className={classesBouton({ variante: 'contour', taille: 'lg', className: '!border-sur-primaire/40 !text-sur-primaire hover:!bg-white/10' })}>
+        <Link to="/connexion" className={classesBouton({ variante: 'contour-clair', taille: 'lg' })}>
           Se connecter
         </Link>
       </CtaBand>

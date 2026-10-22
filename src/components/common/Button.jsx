@@ -7,7 +7,10 @@ import Spinner from './Spinner.jsx';
  * texte foncé) pour mettre en avant une création, jamais pour un état.
  */
 const VARIANTES = {
-  primaire: 'bg-primaire text-sur-primaire hover:bg-primaire-survol border-transparent',
+  primaire: 'bg-primaire text-sur-primaire hover:bg-primaire-survol border-transparent shadow-[0_10px_24px_-10px_rgb(15_76_129/0.65)]',
+  // Sur les bandes sombres du site.
+  clair: 'bg-white text-[var(--site-bande)] border-transparent hover:bg-white/90',
+  'contour-clair': 'bg-transparent text-white border-white/35 hover:bg-white/10',
   secondaire: 'bg-secondaire text-sur-secondaire hover:bg-secondaire-survol border-transparent',
   contour: 'bg-transparent text-primaire border-primaire hover:bg-primaire-teinte',
   neutre: 'bg-surface text-texte border-bordure-forte hover:bg-surface-alt',
@@ -19,12 +22,13 @@ const VARIANTES = {
 const TAILLES = {
   sm: 'min-h-8 px-3 text-legende gap-1.5',
   md: 'min-h-10 px-4 text-petit gap-2',
-  lg: 'min-h-12 px-6 text-corps gap-2',
+  lg: 'min-h-12 px-7 text-corps gap-2',
 };
 
 export function classesBouton({ variante = 'primaire', taille = 'md', pleineLargeur = false, className = '' } = {}) {
   return [
-    'inline-flex items-center justify-center rounded-champ border font-semibold leading-none whitespace-nowrap',
+    // Site vitrine : boutons en pilule.
+    'inline-flex items-center justify-center rounded-full border font-semibold leading-none whitespace-nowrap',
     'transition-colors duration-150 focus-visible:outline-none focus-visible:shadow-[var(--pl-focus)]',
     'disabled:cursor-not-allowed disabled:opacity-55 aria-disabled:cursor-not-allowed aria-disabled:opacity-55',
     VARIANTES[variante] || VARIANTES.primaire,

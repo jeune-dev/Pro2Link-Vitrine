@@ -108,16 +108,39 @@ dialog.pl-modale[open] { animation: modale-entree 0.18s ease-out; }
 
 .chiffres { font-variant-numeric: tabular-nums; }
 
-/* Séries catégorielles des graphiques : 3 premiers créneaux de la palette de
-   référence (validée daltonisme, toutes paires, clair ET sombre). Ordre fixe :
-   la couleur suit l'entité, jamais son rang. Le bleu de marque #0F4C81 est trop
-   sombre pour une série (bande de luminance) : il reste réservé à l'interface. */
+/* ── Style du site vitrine ───────────────────────────────────────────────
+   Bandes sombres en bleu de marque (pas de marine), accents turquoise.
+   Valeurs dérivées de la charte ; le mode sombre a ses propres pas. */
 :root {
-  --viz-1: #2a78d6;
-  --viz-2: #eb6834;
-  --viz-3: #1baf7a;
+  --site-bande: #0B3A63;          /* = primaire survol de la charte */
+  --site-bande-2: #0F4C81;        /* = primaire */
+  --site-bande-texte: #FFFFFF;
+  --site-bande-texte-2: rgb(255 255 255 / 0.78);
+  --site-accent: #0D9488;         /* turquoise foncé : mots mis en avant (titres ≥ 24 px) */
+  --site-accent-clair: #2DD4BF;   /* turquoise sur fond sombre */
+  --site-halo: rgb(20 184 166 / 0.18);
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --viz-1: #3987e5; --viz-2: #d95926; --viz-3: #199e70; }
+  :root:not([data-theme="light"]) { --site-bande: #0F2A44; --site-bande-2: #123553; --site-accent: #2DD4BF; --site-halo: rgb(45 212 191 / 0.12); }
 }
-:root[data-theme="dark"] { --viz-1: #3987e5; --viz-2: #d95926; --viz-3: #199e70; }
+:root[data-theme="dark"] { --site-bande: #0F2A44; --site-bande-2: #123553; --site-accent: #2DD4BF; --site-halo: rgb(45 212 191 / 0.12); }
+
+/* Sur-titre de section : majuscules espacées, encadrées de traits. */
+.surtitre {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--site-accent);
+}
+.surtitre::before, .surtitre--centre::after { content: ""; width: 24px; height: 2px; border-radius: 2px; background: currentColor; }
+.surtitre--sombre { color: var(--site-accent-clair); }
+
+/* Titres d'affichage : très gras, interlettrage serré. */
+.titre-affiche { font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+
+/* Bandes sombres de la vitrine. */
+.bande-sombre {
+  background:
+    radial-gradient(900px 420px at 85% 0%, rgb(20 184 166 / 0.16), transparent 60%),
+    linear-gradient(160deg, var(--site-bande) 0%, var(--site-bande-2) 100%);
+  color: var(--site-bande-texte);
+}

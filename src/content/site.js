@@ -32,16 +32,34 @@ export const AVANT_APRES = {
 };
 
 export const FONCTIONNALITES = [
-  { id: 'partenaires', icone: Users, titre: 'Fournisseurs et clients', texte: 'Retrouvez vos partenaires commerciaux, leur profil, leur historique et leur situation financière.' },
-  { id: 'catalogue', icone: Boxes, titre: 'Catalogue des produits', texte: 'Le fournisseur publie ses produits : référence, unité, prix, disponibilité et catégorie.' },
-  { id: 'bons-commande', icone: ClipboardList, titre: 'Bons de commande', texte: 'Sélectionnez produits et quantités : le bon de commande est généré automatiquement.' },
-  { id: 'validation', icone: CheckCheck, titre: 'Validation et modification', texte: 'Le fournisseur accepte ou propose une modification ; l’acheteur valide la version finale.' },
-  { id: 'livraisons', icone: Truck, titre: 'Suivi des livraisons', texte: 'Préparation, livraison, confirmation de réception : chaque étape est visible des deux côtés.' },
-  { id: 'facturation', icone: FileText, titre: 'Facturation', texte: 'La facture est associée à la commande réceptionnée et reste consultable à tout moment.' },
-  { id: 'paiements', icone: Wallet, titre: 'Paiements, dettes et créances', texte: 'Le solde de chaque partenaire est calculé à partir des factures et des paiements enregistrés.' },
-  { id: 'notifications', icone: Bell, titre: 'Notifications', texte: 'Nouveau bon de commande, proposition reçue, livraison, facture : vous êtes prévenu.' },
-  { id: 'historique', icone: History, titre: 'Historique des opérations', texte: 'Chaque commande conserve la trace de qui a fait quoi, et à quel moment.' },
-  { id: 'utilisateurs', icone: UserCog, titre: 'Utilisateurs et permissions', texte: 'Administrateur, responsable achats, comptable, réceptionnaire… chacun selon son rôle.' },
+  { id: 'partenaires', icone: Users, titre: 'Fournisseurs et clients', texte: 'Retrouvez vos partenaires commerciaux, leur profil, leur historique et leur situation financière.', tags: ['Annuaire', 'Profil', 'Historique'] },
+  { id: 'catalogue', icone: Boxes, titre: 'Catalogue des produits', texte: 'Le fournisseur publie ses produits : référence, unité, prix, disponibilité et catégorie.', tags: ['Prix', 'Disponibilité', 'Catégories'] },
+  { id: 'bons-commande', icone: ClipboardList, titre: 'Bons de commande', texte: 'Sélectionnez produits et quantités : le bon de commande est généré automatiquement.', tags: ['Sans panier', 'Numérotation', 'Modèle personnalisé'] },
+  { id: 'validation', icone: CheckCheck, titre: 'Validation et modification', texte: 'Le fournisseur accepte ou propose une modification ; l’acheteur valide la version finale.', tags: ['Proposition', 'Substitution', 'Version de référence'] },
+  { id: 'livraisons', icone: Truck, titre: 'Suivi des livraisons', texte: 'Préparation, livraison, confirmation de réception : chaque étape est visible des deux côtés.', tags: ['En préparation', 'Livrée', 'Réception'] },
+  { id: 'facturation', icone: FileText, titre: 'Facturation', texte: 'La facture est associée à la commande réceptionnée et reste consultable à tout moment.', tags: ['Liée à la commande', 'PDF', 'Modèle personnalisé'] },
+  { id: 'paiements', icone: Wallet, titre: 'Paiements, dettes et créances', texte: 'Le solde de chaque partenaire est calculé à partir des factures et des paiements enregistrés.', tags: ['Soldes', 'Échéances', 'Historique'] },
+  { id: 'notifications', icone: Bell, titre: 'Notifications', texte: 'Nouveau bon de commande, proposition reçue, livraison, facture : vous êtes prévenu.', tags: ['Web', 'Push mobile', 'Temps réel'] },
+  { id: 'historique', icone: History, titre: 'Historique des opérations', texte: 'Chaque commande conserve la trace de qui a fait quoi, et à quel moment.', tags: ['Qui', 'Quoi', 'Quand'] },
+  { id: 'utilisateurs', icone: UserCog, titre: 'Utilisateurs et permissions', texte: 'Administrateur, responsable achats, comptable, réceptionnaire… chacun selon son rôle.', tags: ['6 rôles', 'Permissions', 'Équipes'] },
+];
+
+/**
+ * Repères produit affichés sous le hero : FAITS issus du cahier des charges
+ * (supports, rôles, statuts), pas des chiffres commerciaux.
+ */
+export const REPERES = [
+  { valeur: '3', libelle: 'supports : Web, Android et iOS' },
+  { valeur: '6', libelle: 'rôles internes par entreprise' },
+  { valeur: '11', libelle: 'étapes de commande suivies' },
+  { valeur: '0', libelle: 'panier : un bon de commande validé à deux' },
+];
+
+/** Section sombre « Web et mobile » (cahier des charges § 4 et § 23). */
+export const SYNCHRO = [
+  { titre: 'Au bureau, la gestion complète', texte: 'Commandes, fournisseurs, clients, produits, factures, paiements, utilisateurs et statistiques sur l’application Web.' },
+  { titre: 'Sur le terrain, l’essentiel', texte: 'Recevoir, accepter ou modifier une commande, suivre les statuts et les montants dus depuis un smartphone.' },
+  { titre: 'Les mêmes données, partout', texte: 'Une commande reçue sur mobile apparaît aussitôt sur le Web ; une proposition envoyée du Web arrive sur le téléphone du client.' },
 ];
 
 export const ETAPES = [
